@@ -1,14 +1,14 @@
 # Algomatic Tech Blog Desktop
 
-Pake/Tauri wrapper for <https://tech.algomatic.jp/>.
+<https://tech.algomatic.jp/> を Pake / Tauri でデスクトップアプリ化するためのリポジトリです。
 
-This repository contains:
+このリポジトリには、次のものを置いています。
 
-- a reproducible Pake build command
-- a GitHub Actions workflow for macOS / Windows / Linux builds
-- the locally built macOS arm64 app archive
+- 再現用の Pake ビルドコマンド
+- macOS / Windows / Linux 向けの GitHub Actions ビルド workflow
+- ローカルで作成した macOS arm64 アプリの zip アーカイブ
 
-## Local macOS build
+## ローカル macOS ビルド
 
 ```bash
 PAKE_CREATE_APP=1 npx pake-cli@3.11.10 https://tech.algomatic.jp/ \
@@ -22,13 +22,13 @@ PAKE_CREATE_APP=1 npx pake-cli@3.11.10 https://tech.algomatic.jp/ \
   --app-version 1.0.0
 ```
 
-## Local artifact
+## ローカル成果物
 
 ```text
 Algomatic Tech Blog-macOS-arm64.app.zip
 ```
 
-Verified locally:
+ローカルでは次を確認しています。
 
 ```text
 Mach-O 64-bit executable arm64
@@ -37,21 +37,21 @@ CFBundleShortVersionString => 1.0.0
 codesign verify: ok
 ```
 
-## Cross-platform builds
+## クロスプラットフォームビルド
 
-For Windows, Linux, and macOS release artifacts, run the GitHub Actions workflow:
+Windows、Linux、macOS 向けの成果物は、次の GitHub Actions workflow から生成できます。
 
 ```text
 .github/workflows/build-pake.yml
 ```
 
-The workflow uses Pake CLI and OS-specific GitHub-hosted runners.
+この workflow は Pake CLI と OS 別の GitHub-hosted runner を使います。
 
-## Source
+## 参照元
 
-- Website: <https://tech.algomatic.jp/>
+- 対象サイト: <https://tech.algomatic.jp/>
 - Pake: <https://github.com/tw93/Pake>
 
-## License note
+## ライセンス注記
 
-See [LICENSE-NOTE.md](./LICENSE-NOTE.md).
+ライセンスと権利関係の注記は [LICENSE-NOTE.md](./LICENSE-NOTE.md) を参照してください。

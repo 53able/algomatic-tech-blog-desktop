@@ -1,22 +1,24 @@
-# License Note
+# ライセンス注記
 
-This repository contains a Pake-generated desktop wrapper for <https://tech.algomatic.jp/>.
+このリポジトリは、<https://tech.algomatic.jp/> を Pake で生成したデスクトップアプリの成果物とビルド手順を公開するためのものです。
 
-## Pake
+## Pake について
 
-Pake itself is licensed under GPL-3.0 with the Pake Output Exception:
+Pake 本体は GPL-3.0 でライセンスされており、あわせて Pake Output Exception が提供されています。
 
 - <https://github.com/tw93/Pake/blob/main/LICENSE>
 - <https://github.com/tw93/Pake/blob/main/LICENSE-EXCEPTION>
 
-The generated app artifact in this repository is distributed as a Pake Output. This repository does not redistribute a modified version of Pake itself.
+このリポジトリに含まれる生成済みアプリ成果物は、Pake Output として配布しています。このリポジトリは、Pake 本体の改変版を再配布するものではありません。
 
-## Website content and brand assets
+## Webサイトのコンテンツとブランド資産について
 
-Website content, logos, trademarks, icons, and brand assets remain owned by their respective owners.
+Webサイトの本文、ロゴ、商標、アイコン、その他のブランド資産は、それぞれの権利者に帰属します。
 
-This repository is published as a generated app artifact and build recipe, not as a grant of rights to reuse the underlying website content, logos, trademarks, icons, or brand assets separately.
+このリポジトリは、生成済みアプリ成果物とビルド手順を公開するためのものであり、元Webサイトの本文、ロゴ、商標、アイコン、ブランド資産を個別に再利用する権利を許諾するものではありません。
 
-## Repository materials
+## このリポジトリ内の資料について
 
-Unless a separate license is added later, this repository should not be read as granting a broad open-source license to the underlying website content or brand assets. Reuse of the build recipe should also respect the licenses of Pake, Tauri, and any other dependencies used by the build process.
+将来、別途ライセンスが追加されない限り、このリポジトリは、元Webサイトのコンテンツやブランド資産に対する広範なオープンソースライセンスを付与するものではありません。
+
+ビルド手順を再利用する場合も、Pake、Tauri、およびビルド過程で利用する各依存関係のライセンスを確認してください。
