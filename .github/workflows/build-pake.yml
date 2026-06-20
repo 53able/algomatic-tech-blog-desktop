@@ -1,0 +1,96 @@
+name: Build Algomatic Tech Blog desktop app
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            targets: universal
+            artifact_name: algomatic-tech-blog-macos
+          - os: windows-latest
+            targets: x64
+            artifact_name: algomatic-tech-blog-windows-x64
+          - os: ubuntu-22.04
+            targets: deb,appimage
+            artifact_name: algomatic-tech-blog-linux-x64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add macOS Intel target for universal build
+        if: matrix.os == 'macos-latest'
+        run: rustup target add x86_64-apple-darwin aarch64-apple-darwin
+
+      - name: Install Linux prerequisites
+        if: matrix.os == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            patchelf
+
+      - name: Build with Pake
+        shell: bash
+        run: |
+          npx pake-cli@3.11.10 https://tech.algomatic.jp/ \
+            --name "Algomatic Tech Blog" \
+            --title "Algomatic Tech Blog" \
+            --width 1440 \
+            --height 900 \
+            --min-width 900 \
+            --min-height 600 \
+            --enable-find \
+            --app-version 1.0.0 \
+            --targets "${{ matrix.targets }}"
+
+      - name: List outputs
+        shell: bash
+        run: find . -maxdepth 3 -type f \( -name '*.dmg' -o -name '*.app' -o -name '*.msi' -o -name '*.exe' -o -name '*.deb' -o -name '*.AppImage' -o -name '*.rpm' -o -name '*.zst' \) -print
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: |
+            *.dmg
+            *.msi
+            *.exe
+            *.deb
+            *.AppImage
+            *.rpm
+            *.pkg.tar.zst
+            **/bundle/**/*.dmg
+            **/bundle/**/*.msi
+            **/bundle/**/*.exe
+            **/bundle/**/*.deb
+            **/bundle/**/*.AppImage
+            **/bundle/**/*.rpm
+            **/bundle/**/*.pkg.tar.zst
+          if-no-files-found: error
