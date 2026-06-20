@@ -54,13 +54,4 @@ The workflow uses Pake CLI and OS-specific GitHub-hosted runners.
 
 ## License note
 
-This repository contains a Pake-generated desktop wrapper for <https://tech.algomatic.jp/>.
-
-Pake itself is licensed under GPL-3.0 with the Pake Output Exception:
-
-- <https://github.com/tw93/Pake/blob/main/LICENSE>
-- <https://github.com/tw93/Pake/blob/main/LICENSE-EXCEPTION>
-
-The generated app artifact is distributed as a Pake Output. This repository does not redistribute a modified version of Pake itself.
-
-Website content, logos, trademarks, icons, and brand assets remain owned by their respective owners. This repository is published as a generated app artifact and build recipe, not as a grant of rights to reuse the underlying website content or brand assets separately.
+See [LICENSE-NOTE.md](./LICENSE-NOTE.md).
